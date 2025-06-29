@@ -1,14 +1,455 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>北軽井沢の旅 | みんなで行こう！</title>
-    <meta name="description" content="7月20-21日の北軽井沢旅行の詳細ページ。シュネール北軽井沢でサウナ、BBQ、マーダーミステリーを楽しもう！" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <meta name="description" content="7月20-21日の北軽井沢旅行の詳細ページ。シュネール北軽井沢でサウナ、BBQ、ボードゲームを楽しもう！">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Custom animations */
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40%, 43% {
+                transform: translateY(-30px);
+            }
+            70% {
+                transform: translateY(-15px);
+            }
+            90% {
+                transform: translateY(-4px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom backdrop blur */
+        .backdrop-blur-sm {
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Hero Section with North Karuizawa Background -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/kitakaruizawa.png')">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto">
+            <div class="mb-6 sm:mb-8">
+                <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6 leading-tight">
+                    スタバ@北軽井沢
+                </h1>
+                <p class="text-lg sm:text-2xl md:text-3xl font-light mb-6 sm:mb-8 opacity-90">
+                    みんなで作る、最高の思い出
+                </p>
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-6 text-sm sm:text-lg">
+                    <div class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3">
+                        <i data-lucide="calendar-days" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        <span>7月20日-21日</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3">
+                        <i data-lucide="map-pin" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        <span>北軽井沢</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
+                        <i data-lucide="heart" class="text-white w-4 h-4"></i>
+                    </div>
+                    <span class="text-lg sm:text-xl font-bold text-gray-800">北軽井沢 2025</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-gray-600">
+                    <a href="#schedule" class="hover:text-green-600 transition-colors">スケジュール</a>
+                    <a href="#activities" class="hover:text-green-600 transition-colors">アクティビティ</a>
+                    <a href="#accommodation" class="hover:text-green-600 transition-colors">宿泊先</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 sm:space-y-24">
+        <!-- Trip Overview -->
+        <section class="text-center space-y-8 sm:space-y-12">
+            <div class="space-y-3 sm:space-y-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+                    特別な2日間の旅
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+                    北軽井沢の美しい自然に囲まれて、仲間たちと過ごす忘れられない時間。
+                    サウナで心も体もリフレッシュし、BBQで笑顔を分かち合い、ゲームで絆を深める。
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+                <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 hover:shadow-2xl transition-shadow duration-300 w-full sm:w-80 max-w-sm">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i data-lucide="calendar-days" class="text-green-600 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">1泊2日</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">7月20日から21日まで、夏の北軽井沢を満喫する特別な週末</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 hover:shadow-2xl transition-shadow duration-300 w-full sm:w-80 max-w-sm">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i data-lucide="map-pin" class="text-blue-600 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">北軽井沢</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">標高1000mの高原リゾート、澄んだ空気と豊かな自然</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="space-y-8 sm:space-y-12">
+            <div class="text-center space-y-3 sm:space-y-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">旅のスケジュール</h2>
+                <p class="text-lg sm:text-xl text-gray-600">充実した2日間のタイムテーブル</p>
+            </div>
+
+            <!-- Day 1 -->
+            <div class="space-y-6 sm:space-y-8">
+                <div class="text-center">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-green-600 mb-2">Day 1 - 7月20日（土）</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">出発から別荘での楽しい夜まで</p>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-lg">
+                    <div class="space-y-4 sm:space-y-6" id="day1-schedule">
+                        <!-- Day 1 schedule items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="space-y-6 sm:space-y-8">
+                <div class="text-center">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">Day 2 - 7月21日（日）</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">朝食から観光、そして帰路へ</p>
+                </div>
+                
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-lg">
+                    <div class="space-y-4 sm:space-y-6" id="day2-schedule">
+                        <!-- Day 2 schedule items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities" class="space-y-8 sm:space-y-12">
+            <div class="text-center space-y-3 sm:space-y-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">楽しいアクティビティ</h2>
+                <p class="text-lg sm:text-xl text-gray-600">心に残る特別な体験</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Sauna Activity -->
+                <div class="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="h-48 sm:h-64 bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('/SAUNA.png')">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
+                    </div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 text-white">
+                        <i data-lucide="waves" class="mb-2 sm:mb-4 text-blue-400 w-8 h-8"></i>
+                        <h4 class="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">サウナでリフレッシュ</h4>
+                        <p class="text-sm sm:text-lg opacity-90">宿泊先での極上サウナタイム</p>
+                    </div>
+                </div>
+
+                <!-- BBQ Activity -->
+                <div class="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="h-48 sm:h-64 bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('/BBQ.png')">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
+                    </div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 text-white">
+                        <i data-lucide="utensils" class="mb-2 sm:mb-4 text-orange-400 w-8 h-8"></i>
+                        <h4 class="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">BBQパーティー</h4>
+                        <p class="text-sm sm:text-lg opacity-90">みんなでワイワイバーベキュー</p>
+                    </div>
+                </div>
+
+                <!-- Board Game Activity -->
+                <div class="group relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 sm:col-span-2 md:col-span-1">
+                    <div class="h-48 sm:h-64 bg-cover bg-center transition-transform duration-300 group-hover:scale-110" style="background-image: url('https://images.pexels.com/photos/4691567/pexels-photo-4691567.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
+                    </div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 text-white">
+                        <i data-lucide="gift" class="mb-2 sm:mb-4 text-purple-400 w-8 h-8"></i>
+                        <h4 class="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">ボードゲーム</h4>
+                        <p class="text-sm sm:text-lg opacity-90">ボードゲームで盛り上がろう</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friends Section -->
+        <section class="space-y-8 sm:space-y-12">
+            <div class="text-center space-y-3 sm:space-y-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">みんなで楽しむ時間</h2>
+                <p class="text-lg sm:text-xl text-gray-600">最高の仲間との特別なひととき</p>
+            </div>
+            
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
+                <div class="h-64 sm:h-96 bg-cover bg-center" style="background-image: url('/friends_trip.png')">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                </div>
+                
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4 sm:px-8">
+                        <h3 class="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">友情と笑顔に満ちた旅</h3>
+                        <p class="text-base sm:text-xl opacity-90 max-w-2xl leading-relaxed">
+                            みんなで過ごす時間は何にも代えがたい宝物。
+                            笑い声が響く北軽井沢で、一生の思い出を作ろう。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accommodation Section -->
+        <section id="accommodation" class="space-y-8 sm:space-y-12">
+            <div class="text-center space-y-3 sm:space-y-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">宿泊先</h2>
+                <p class="text-lg sm:text-xl text-gray-600">プライベート感溢れる贅沢な空間</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                    <div class="h-64 sm:h-80 md:h-96 bg-cover bg-center" style="background-image: url('/ScHNEEL_kitakaruizawa.png')"></div>
+                    <div class="p-6 sm:p-12 text-white flex flex-col justify-center">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">シュネール北軽井沢</h3>
+                        <p class="text-sm sm:text-lg mb-6 sm:mb-8 opacity-90 leading-relaxed">
+                            北軽井沢の自然に囲まれた贅沢なプライベートヴィラ。
+                            サウナ、BBQ設備完備で、仲間との特別な時間を演出します。
+                        </p>
+                        <a href="https://schneel-kitakaru.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-white text-green-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 w-fit text-sm sm:text-base">
+                            <span>公式サイトを見る</span>
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packing List -->
+        <section class="space-y-8 sm:space-y-12">
+            <div class="text-center space-y-3 sm:space-y-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">持ち物チェックリスト</h2>
+                <p class="text-lg sm:text-xl text-gray-600">忘れ物がないように確認しよう</p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-8 border border-gray-100">
+                    <div class="space-y-3 sm:space-y-4" id="packing-list">
+                        <!-- Packing list items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center space-y-6 sm:space-y-8">
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl" style="background-image: url('https://images.pexels.com/photos/1645668/pexels-photo-1645668.jpeg?auto=compress&cs=tinysrgb&w=1200&h=601&fit=crop')">
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="relative z-10 py-16 sm:py-24 px-6 sm:px-12 text-white">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+                        最高の思い出を作ろう！
+                    </h2>
+                    <p class="text-lg sm:text-xl md:text-2xl opacity-90 mb-6 sm:mb-8">
+                        北軽井沢で過ごす特別な2日間
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                        <div class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
+                            <i data-lucide="star" class="text-yellow-400 w-4 h-4"></i>
+                            <span>素敵な仲間</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
+                            <i data-lucide="heart" class="text-red-400 w-4 h-4"></i>
+                            <span>忘れられない体験</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
+                            <i data-lucide="clock" class="text-blue-400 w-4 h-4"></i>
+                            <span>充実のスケジュール</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 sm:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+            <div class="mb-6 sm:mb-8">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <i data-lucide="heart" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">北軽井沢の旅 2025</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+                    みんなで作る最高の思い出。この特別な旅が、私たちの絆をさらに深めてくれることでしょう。
+                </p>
+            </div>
+            <div class="border-t border-gray-800 pt-6 sm:pt-8">
+                <p class="text-gray-500 text-xs sm:text-sm">
+                    © 2025 北軽井沢の旅. Made with ❤️ for amazing friends.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Schedule data
+        const day1Schedule = [
+            { time: '07:30', activity: 'チームA（八千代中央）・チームB（行徳）出発', icon: 'car' },
+            { time: '10:00〜10:30', activity: '途中休憩：横川SA（「峠の釜めし」で朝食やお土産チェック）', icon: 'coffee' },
+            { time: '12:30', activity: '昼食：「軽井沢焙煎所」または「カフェ・ル・プティニット（小諸市）」', icon: 'utensils' },
+            { time: '14:00', activity: '食材買い出し：「ツルヤ軽井沢店」', icon: 'gift' },
+            { time: '15:30', activity: '別荘到着・チェックイン（群馬県嬬恋村）', icon: 'map-pin' },
+            { time: '16:00〜', activity: 'フリータイム：庭遊び・ティータイム', icon: 'coffee' },
+            { time: '18:00〜', activity: 'BBQ＆乾杯🍻 信州牛や焼き野菜、クラフトビールを楽しむ', icon: 'utensils' },
+            { time: '21:00〜', activity: '星空＆焚き火風の演出でまったりトーク（大人は晩酌タイム）', icon: 'star' }
+        ];
+
+        const day2Schedule = [
+            { time: '07:30〜', activity: '朝食（パン・ヨーグルト・コーヒー）', icon: 'coffee' },
+            { time: '09:00', activity: 'チェックアウト・出発', icon: 'car' },
+            { time: '10:00〜', activity: '観光：鬼押出し園（火山岩の絶景・自然散策）', icon: 'mountain' },
+            { time: '12:00', activity: '昼食：高原野菜たっぷりのランチ（「ラ・テラ」など）', icon: 'utensils' },
+            { time: '13:30', activity: '出発（帰路へ）', icon: 'car' },
+            { time: '17:30頃', activity: '各地帰着予定（渋滞がなければ）', icon: 'map-pin' }
+        ];
+
+        const packingList = [
+            '家に余ってるお酒',
+            'サウナ用水着'
+        ];
+
+        // State for checked items
+        let checkedItems = {};
+
+        // Function to render schedule
+        function renderSchedule(scheduleData, containerId, colorClass) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            scheduleData.forEach((item, index) => {
+                const scheduleItem = document.createElement('div');
+                scheduleItem.className = 'flex items-start space-x-3 sm:space-x-6 p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200';
+                
+                scheduleItem.innerHTML = `
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-${colorClass}-100 rounded-full flex items-center justify-center">
+                            <i data-lucide="${item.icon}" class="text-${colorClass}-600 w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex flex-col space-y-2">
+                            <span class="inline-block bg-${colorClass}-600 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold w-fit">
+                                ${item.time}
+                            </span>
+                            <p class="text-gray-800 font-medium text-sm sm:text-lg leading-relaxed">${item.activity}</p>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(scheduleItem);
+            });
+            
+            lucide.createIcons();
+        }
+
+        // Function to render packing list
+        function renderPackingList() {
+            const container = document.getElementById('packing-list');
+            container.innerHTML = '';
+
+            packingList.forEach((item, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 rounded-lg sm:rounded-xl hover:bg-gray-50 cursor-pointer transition-all duration-200 border border-gray-100 hover:border-green-200';
+                
+                const isChecked = checkedItems[index];
+                const iconClass = isChecked ? 'check-circle-2' : 'circle';
+                const iconColor = isChecked ? 'text-green-500' : 'text-gray-400';
+                const textClass = isChecked ? 'line-through text-gray-500' : 'text-gray-800';
+                
+                listItem.innerHTML = `
+                    <i data-lucide="${iconClass}" class="${iconColor} flex-shrink-0 w-6 h-6"></i>
+                    <span class="text-base sm:text-lg font-medium ${textClass}">
+                        ${item}
+                    </span>
+                `;
+                
+                listItem.addEventListener('click', () => {
+                    checkedItems[index] = !checkedItems[index];
+                    renderPackingList();
+                });
+                
+                container.appendChild(listItem);
+            });
+            
+            lucide.createIcons();
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSchedule(day1Schedule, 'day1-schedule', 'green');
+            renderSchedule(day2Schedule, 'day2-schedule', 'blue');
+            renderPackingList();
+        });
+    </script>
+</body>
 </html>

@@ -3,9 +3,20 @@ node_modules/
 .pnp
 .pnp.js
 
-# Build outputs
+# Build outputs (not needed for simple HTML)
 dist/
 build/
+
+# React development files (not needed)
+src/
+index_react.html
+vite.config.ts
+tsconfig*.json
+eslint.config.js
+postcss.config.js
+tailwind.config.js
+package*.json
+pnpm-lock.yaml
 
 # Environment variables
 .env
